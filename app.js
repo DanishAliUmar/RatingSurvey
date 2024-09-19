@@ -166,6 +166,7 @@ renderSurvey();
 function calculateResults() {
 const resultArray = new Array(surveyQuestions.length).fill(0);
 const inputElements = document.querySelectorAll('input[type="radio"]');
+const textAreaValue = document.querySelector('#feedback').value;
 
 inputElements.forEach((input) => {
 if (input.checked) {
@@ -184,7 +185,7 @@ if (unanswered) {
 alert("Please answer all the questions before submitting.");
 } else {
 // Proceed with further processing of resultArray
-console.log("All questions answered!", resultArray);
+console.log("User FeedBack", resultArray, textAreaValue);
 }
 }
 
