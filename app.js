@@ -66,127 +66,127 @@ const ExcellentIcon = `<svg class='sm:size-10 size-7' width="42" height="41" vie
 </svg>`;
 
 const surveyQuestions = [
-{
-question: "How was your overall visit today with us?",
-options: ["Disagree", "Poor", "Average", "Good", "Excellent"],
-icons: [DisagreeIcon, PoorIcon, AverageIcon, GoodIcon, ExcellentIcon],
-questionId: 22,
-},
-{
-question: "Rate the salon cleanliness",
-options: ["Disagree", "Poor", "Average", "Good", "Excellent"],
-icons: [DisagreeIcon, PoorIcon, AverageIcon, GoodIcon, ExcellentIcon],
-questionId: 17,
-},
-{
-question: "Were you seated on time as per your appointment schedule",
-options: ["Disagree", "Poor", "Average", "Good", "Excellent"],
-icons: [DisagreeIcon, PoorIcon, AverageIcon, GoodIcon, ExcellentIcon],
-questionId: 46,
-},
-{
-question: "Rate the speed of the services",
-options: ["Disagree", "Poor", "Average", "Good", "Excellent"],
-icons: [DisagreeIcon, PoorIcon, AverageIcon, GoodIcon, ExcellentIcon],
-questionId: 15,
-},
-{
-question: "Rate the quality of our services",
-options: ["Disagree", "Poor", "Average", "Good", "Excellent"],
-icons: [DisagreeIcon, PoorIcon, AverageIcon, GoodIcon, ExcellentIcon],
-questionId: 10,
-},
-{
-question: "Rate the staff courtesy/helpfulness",
-options: ["Disagree", "Poor", "Average", "Good", "Excellent"],
-icons: [DisagreeIcon, PoorIcon, AverageIcon, GoodIcon, ExcellentIcon],
-questionId: 16,
-},
+  {
+    question: "How was your overall visit today with us?",
+    options: ["Disagree", "Poor", "Average", "Good", "Excellent"],
+    icons: [DisagreeIcon, PoorIcon, AverageIcon, GoodIcon, ExcellentIcon],
+    questionId: 22,
+  },
+  {
+    question: "Rate the salon cleanliness",
+    options: ["Disagree", "Poor", "Average", "Good", "Excellent"],
+    icons: [DisagreeIcon, PoorIcon, AverageIcon, GoodIcon, ExcellentIcon],
+    questionId: 17,
+  },
+  {
+    question: "Were you seated on time as per your appointment schedule",
+    options: ["Disagree", "Poor", "Average", "Good", "Excellent"],
+    icons: [DisagreeIcon, PoorIcon, AverageIcon, GoodIcon, ExcellentIcon],
+    questionId: 46,
+  },
+  {
+    question: "Rate the speed of the services",
+    options: ["Disagree", "Poor", "Average", "Good", "Excellent"],
+    icons: [DisagreeIcon, PoorIcon, AverageIcon, GoodIcon, ExcellentIcon],
+    questionId: 15,
+  },
+  {
+    question: "Rate the quality of our services",
+    options: ["Disagree", "Poor", "Average", "Good", "Excellent"],
+    icons: [DisagreeIcon, PoorIcon, AverageIcon, GoodIcon, ExcellentIcon],
+    questionId: 10,
+  },
+  {
+    question: "Rate the staff courtesy/helpfulness",
+    options: ["Disagree", "Poor", "Average", "Good", "Excellent"],
+    icons: [DisagreeIcon, PoorIcon, AverageIcon, GoodIcon, ExcellentIcon],
+    questionId: 16,
+  },
 ];
 
 // Function to generate the survey questions dynamically
 function renderSurvey() {
-const surveyContainer = document.getElementById("survey-container");
-surveyContainer.innerHTML = surveyQuestions
-.map((item, index) => {
-return `
-<div class="flex gap-3 py-3 border-b border-[#CCCCCC] items-start sm:items-center">
+  const surveyContainer = document.getElementById("survey-container");
+  surveyContainer.innerHTML = surveyQuestions
+    .map((item, index) => {
+      return `
+<div class="flex sm:gap-3 gap-2 py-3 border-b border-[#CCCCCC] items-start sm:items-center">
 <span class="flex items-center justify-center max-w-max px-1 text-[#422B0D] text-2xl font-semibold">${
-index + 1
-}.</span>
+        index + 1
+      }.</span>
 <div class="flex-1 flex sm:items-center justify-between sm:flex-row flex-col sm:mt-0 mt-1 gap-1">
 <p class="text-[#374168] font-medium">${item.question}</p>
 <div class="flex items-center sm:gap-4 gap-2 sm:justify-end flex-1 flex-wrap sm:flex-nowrap">
 ${item.options
-.map((option, optIndex) => {
-return `
-<div class="">
-<input type="radio" data-id=${
-item.questionId
-} id="question_${index}__optio__${optIndex}" name="question_${index}" value="${
-optIndex + 1
-}" class="hidden">
-<label for="question_${index}__optio__${optIndex}" class='flex flex-col items-center justify-center cursor-pointer gap-[2px]'>
-<span class="p-1.5 flex items-center justify-center hover:bg-[#94AAFF] rounded-full h-10 w-10">
-${item.icons[optIndex] || ""}
-</span>
-<p class="text-[12px] font-medium text-[#717171]">${option}</p>
-</label>
+  .map((option, optIndex) => {
+    return `
+        <div class="">
+        <input type="radio" data-id=${
+            item.questionId
+            } id="question_${index}__optio__${optIndex}" name="question_${index}" value="${
+            optIndex + 1
+            }" class="hidden">
+        <label for="question_${index}__optio__${optIndex}" class='flex flex-col items-center justify-center cursor-pointer gap-[2px] min-w-[50px]'>
+        <span class="p-1.5 flex items-center justify-center hover:bg-[#94AAFF] rounded-full h-10 w-10">
+        ${item.icons[optIndex] || ""}
+        </span>
+        <p class="text-[12px] font-medium text-[#717171]">${option}</p>
+        </label>
+        </div>
+`;
+  })
+  .join("")}
+</div>
+</div>
 </div>
 `;
-})
-.join("")}
-</div>
-</div>
-</div>
-`;
-})
-.join("");
+    })
+    .join("");
 
-surveyContainer.addEventListener("change", (event) => {
-const checkedRadio = event.target;
-const spanElement = checkedRadio.parentElement.querySelector("span");
-const optionIndex = spanElement.dataset.optionIndex;
+  surveyContainer.addEventListener("change", (event) => {
+    const checkedRadio = event.target;
+    const spanElement = checkedRadio.parentElement.querySelector("span");
+    const optionIndex = spanElement.dataset.optionIndex;
 
-// Remove the 'bg-[#94AAFF]' class from all span elements within the same question group
-const questionGroup = checkedRadio.parentElement.parentElement;
-const spanElementsInGroup = questionGroup.querySelectorAll("span");
-spanElementsInGroup.forEach((span) =>
-span.classList.remove("bg-[#94AAFF]")
-);
+    // Remove the 'bg-[#94AAFF]' class from all span elements within the same question group
+    const questionGroup = checkedRadio.parentElement.parentElement;
+    const spanElementsInGroup = questionGroup.querySelectorAll("span");
+    spanElementsInGroup.forEach((span) =>
+      span.classList.remove("bg-[#94AAFF]")
+    );
 
-// Add the 'bg-[#94AAFF]' class to the selected span element
-spanElement.classList.add("bg-[#94AAFF]");
-});
+    // Add the 'bg-[#94AAFF]' class to the selected span element
+    spanElement.classList.add("bg-[#94AAFF]");
+  });
 }
 
 renderSurvey();
 
 // Function to calculate and display results
 function calculateResults() {
-const resultArray = new Array(surveyQuestions.length).fill(0);
-const inputElements = document.querySelectorAll('input[type="radio"]');
-const textAreaValue = document.querySelector('#feedback').value;
+  const resultArray = new Array(surveyQuestions.length).fill(0);
+  const inputElements = document.querySelectorAll('input[type="radio"]');
+  const textAreaValue = document.querySelector("#feedback").value;
 
-inputElements.forEach((input) => {
-if (input.checked) {
-const questionIndex = parseInt(input.name.replace("question_", ""));
-// const questionIndex = input.value;
-const questionId = input.getAttribute("data-id");
+  inputElements.forEach((input) => {
+    if (input.checked) {
+      const questionIndex = parseInt(input.name.replace("question_", ""));
+      // const questionIndex = input.value;
+      const questionId = input.getAttribute("data-id");
 
-resultArray[questionIndex] = [questionId, input.value];
-}
-});
+      resultArray[questionIndex] = [questionId, input.value];
+    }
+  });
 
-// Check if any question has a value of 0 (unanswered)
-const unanswered = resultArray.some((result) => result === 0);
+  // Check if any question has a value of 0 (unanswered)
+  const unanswered = resultArray.some((result) => result === 0);
 
-if (unanswered) {
-alert("Please answer all the questions before submitting.");
-} else {
-// Proceed with further processing of resultArray
-console.log("User FeedBack", resultArray, textAreaValue);
-}
+  if (unanswered) {
+    alert("Please answer all the questions before submitting.");
+  } else {
+    // Proceed with further processing of resultArray
+    console.log("User FeedBack", resultArray, textAreaValue);
+  }
 }
 
 // Add an event listener to the submit button
